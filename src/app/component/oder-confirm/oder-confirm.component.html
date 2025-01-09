@@ -126,13 +126,18 @@
                     <td>{{ item.quantity }}</td>
               
                     <!-- Hiển thị giá từng sản phẩm -->
-                    <td>{{ item.product.price | currency:'VND':'symbol':'1.3-3' }}</td>
+                    <td>{{ item.product.price | number: '1.0-0' }} VNĐ</td>
+                    
 
 
 
-              
+                  
                     <!-- Hiển thị tổng giá dựa trên số lượng sản phẩm -->
-                    <td>{{ (item.product.price * item.quantity) | currency:'VND':'symbol':'1.3-3' }}</td>
+                    <td>{{ (item.product.price * item.quantity) | number:'1.0-0'  }} VNĐ</td>
+
+                   
+
+
                   </tr>
                 </ng-container>
               </tbody>
@@ -141,7 +146,7 @@
               
           </table>
           <p class="mb-0">
-            Tổng tiền: {{ totalAmount | currency: 'VND': 'symbol':'1.3-3' }}
+            Tổng tiền: {{ totalAmount }}
           </p>
           <div class="text-center mt-3">
             <button class="btn btn-success" type="button">Đặt hàng</button>

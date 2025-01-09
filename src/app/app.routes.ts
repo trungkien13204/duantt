@@ -19,6 +19,8 @@ import { AddCategoryAdminComponent } from './admin/cate/addCategory/add.category
 import { UpdateCategoryAdminComponent } from './admin/cate/updateCategory/update.category.admin.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UserListAdminComponent } from './admin/User/userList/user-list.admin.component';
+import { StaticComponent } from './admin/static/static.component';
+
 
 
 export const appRoutes: Routes = [
@@ -42,6 +44,7 @@ export const appRoutes: Routes = [
   { path: 'app-category-admin', component: CategoryAdminComponent ,canActivate: [AdminGuardFn]},
   { path: 'app-add-category-admin', component: AddCategoryAdminComponent ,canActivate: [AdminGuardFn]},
   { path: 'app-user-list-admin', component: UserListAdminComponent ,canActivate: [AdminGuardFn]},
+  { path: 'app-static', component: StaticComponent ,canActivate: [AdminGuardFn]},
   { path: 'app-update.category.admin/:id', component: UpdateCategoryAdminComponent ,canActivate: [AdminGuardFn]},
   { path: 'profile', component: UserDetailComponent, canActivate: [AuthGuardFn] },
   { path: '**', redirectTo: '' } 

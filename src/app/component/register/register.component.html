@@ -1,11 +1,11 @@
 
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 <div class="container">
     <form #registerForm="ngForm" (ngSubmit)="register()">
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="login-form mx-auto">
-                <h2 class="login-header">Đăng nhập</h2>
+                <h2 class="login-header" routerLink="/login">Đăng nhập</h2>
                 <div class="form-group">
                     <label for="phone">Phone</label>
                     <input 
@@ -86,15 +86,12 @@
                       
                     </div>
                 </div>
-                <re-captcha 
-                siteKey="6LdHQ4wqAAAAABDaQ2qP_zv_rDmKxz3Z6KbrqoWA" 
-                (resolved)="onCaptchaResolved($event)">
-              </re-captcha>
+               
               
                 <button type="button" (click)="register()" class="login-button">Đăng Ký</button>
                 <div class="divider"></div>
                 <p class="text-center">Bạn đã có tài khoản
-                    <span><a href="#" class="register-link" routerLink="/login">Đăng nhập</a></span>
+                    <span><a class="register-link" routerLink="/login">Đăng nhập</a></span>
                 </p>
 
             </div>

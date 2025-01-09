@@ -122,7 +122,8 @@
                                   </td>
                                   
                                 <td>{{ item.product.price | number:'1.0-0' }} VNĐ</td>
-                                <td>{{ (item.product.price * item.quantity) | currency:'VND':'symbol':'1.3-3' }}</td>
+                              
+                                <td>{{ (item.product.price * item.quantity) | number: '1.0-0' }} VNĐ</td>
                                 <td> <button class="remove-btn" *ngIf="item.product.id !== undefined"
                                         (click)="removeItem(item.product.id)"> <i class="bi bi-trash3"></i></button>
                                 </td>
@@ -146,10 +147,17 @@
 
                 </div>
                 <div *ngIf="discountAmount > 0" class="mt-2">
-                   
-                  <p class="text-while" style="color: aliceblue;">Bạn được giảm: {{ discountAmount | number:'1.0-0' }} VNĐ</p>
-                  <p style="color: aliceblue;">Tổng tiền sau giảm giá: {{ finalAmount |  number:'1.0-0' }} VNĐ</p>
-                </div>
+                    <p class="text-white">
+                      Bạn được giảm: {{ discountAmount | number:'1.0-0' }}
+                      <span *ngIf="appliedCoupon?.discountType === 'PERCENTAGE'">%-Tổng giá trị đơn hàng</span>
+                      <span *ngIf="appliedCoupon?.discountType === 'FIXED'">VNĐ-Tổng giá trị đơn hàng</span>
+                    </p>
+                    <p class="text-white">
+                      Tổng tiền sau giảm giá: {{ finalAmount | number:'1.0-0' }} VNĐ
+                    </p>
+                  </div>
+                  
+                  
               </div>
               
             <div class="text-start mt-3">

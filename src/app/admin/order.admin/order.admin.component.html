@@ -16,8 +16,10 @@
                     <th>Shipping Method</th>
                     <th>Shipping Address</th>
                     <th>Payment Method</th>
+                    <th>Mã giảm giá</th>
                     <th>Active Status</th>
                     <th>Action</th>
+                  
                 </tr>
             </thead>
             <tbody>
@@ -34,6 +36,7 @@
                     <td>{{ order.shipping_method }}</td>
                     <td>{{ order.shipping_address }}</td>
                     <td>{{ order.payment_method }}</td>
+                    <td>{{order.coupon_code}}</td>
                     <td>
                         <span 
                             class="status-dot" 
@@ -47,6 +50,7 @@
                     <td>
                         <button class="btn btn-warning btn-sm" (click)="deleteOrder(order.id)">Xoá</button>
                     </td>
+                    
                 </tr>
             </tbody>
         </table>

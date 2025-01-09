@@ -9,12 +9,14 @@ import { OrderAdminComponent } from './order.admin/order.admin.component';
 import { ProductAdminComponent } from './managementProduct/product/product.admin.component';
 import { CategoryAdminComponent } from './cate/category/category.admin.component';
 import { UserListAdminComponent } from './User/userList/user-list.admin.component';
+import { StaticComponent } from './static/static.component';
+
 
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [RouterModule, CommonModule, OrderAdminComponent, ProductAdminComponent,CategoryAdminComponent,UserListAdminComponent],
+  imports: [RouterModule, CommonModule, OrderAdminComponent, ProductAdminComponent,CategoryAdminComponent,UserListAdminComponent,StaticComponent],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
 })

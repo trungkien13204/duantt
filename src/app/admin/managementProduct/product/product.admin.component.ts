@@ -49,21 +49,34 @@ export class ProductAdminComponent implements OnInit {
   }
 
  
-  getCategoriesAndProducts() {
-    this.categoryService.getCategories(1, 100).subscribe({
-      next: (categories: Category[]) => {
-        this.categories = categories;
-        this.getProducts(this.keyword, this.selectedCategoryId, this.currentPage, this.itemsPerPage);
-      },
-      error: (error: any) => {
-        console.error('Error fetching categories:', error);
+ getCategoriesAndProducts() {
+  this.categoryService.getCategories(1, 100).subscribe({
+    next: (response: any) => {
+      console.log('Categories response:', response); // Kiểm tra log
+      if (response && response.data && Array.isArray(response.data)) {
+        this.categories = response.data; // Gán danh sách danh mục từ response.data
+      } else {
+        console.warn('Invalid categories format from API.');
+        this.categories = [];
       }
-    });
-  }
+    },
+    error: (error: any) => {
+      console.error('Error fetching categories:', error);
+    }
+  });
+}
+
+  
   getCategoryName(categoryId: number): string {
-    const category = this.categories.find(cat => cat.id === categoryId);
-    return category ? category.name : 'Unknown Category';
+    if (this.categories && this.categories.length > 0) {
+      const category = this.categories.find(cat => cat.id === categoryId);
+      return category ? category.name : 'Unknown Category';
+    }
+    return 'Unknown Category';
   }
+  
+  
+
   
   
   
@@ -71,23 +84,24 @@ export class ProductAdminComponent implements OnInit {
   getProducts(keyword: string, selectedCategoryId: number, page: number, limit: number): void {
     this.productService.getProducts(selectedCategoryId, keyword, page - 1, limit).subscribe({
       next: (response: any) => {
-        if (response.products) {
+        console.log('API response:', response); // Log toàn bộ phản hồi API
+        if (response.products && Array.isArray(response.products)) {
           response.products.forEach((product: Product) => {
             product.url = `http://localhost:8080/api/v1/products/images/${product.thumbnail}`;
-           
           });
-          this.products = response.products;
-          this.totalPages = response.totalPages;
-          this.visiblePages = this.generateVisiblePageArray(this.currentPage, this.totalPages);
+          this.products = response.products; // Gán mảng products
         } else {
-          console.warn('No products found in the response.');
+          console.error('Invalid data format: products is not an array.');
+          this.products = []; // Đảm bảo `products` luôn là mảng
         }
       },
       error: (error: any) => {
         console.error('Error fetching products:', error);
+        this.products = []; // Xử lý lỗi và gán mảng rỗng
       }
     });
   }
+  
   
   
   

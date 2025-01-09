@@ -27,17 +27,32 @@ export class OrderAdminComponent implements OnInit {
   }
 
   getAllOrders(keyword: string, page: number, limit: number): void {
+    console.log('Fetching orders with params:', { keyword, page, limit });
+  
     this.orderService.getAllOrders(keyword, page - 1, limit).subscribe({
       next: (response: any) => {
-        this.orders = response.orders;
-        this.totalPages = response.totalPages;
+        console.log('Response from API:', response);
+  
+        // Kiểm tra và gán dữ liệu trả về
+        if (!response || !response.data) {
+          console.error('Invalid response format:', response);
+          this.orders = [];
+          this.totalPages = 0;
+          this.visiblePages = [];
+          return;
+        }
+  
+        this.orders = response.data.orders || []; // Đảm bảo luôn có giá trị mảng
+        this.totalPages = response.data.totalPages || 0; // Đảm bảo giá trị là số nguyên
+  
         this.visiblePages = this.generateVisiblePageArray(this.currentPage, this.totalPages);
       },
       error: (error: any) => {
-        console.error('Error fetching products:', error);
+        console.error('Error fetching orders:', error);
       }
     });
   }
+  
 
   onPageChange(page: number) {
     this.currentPage = page;

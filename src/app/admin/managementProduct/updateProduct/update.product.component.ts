@@ -34,6 +34,7 @@ export class UpdateProductComponent implements OnInit {
       author: [''],
       thumbnail: [''],
       description: [''],
+      quantity:[''],
       category_id: [null, [Validators.required]]
     });
   }

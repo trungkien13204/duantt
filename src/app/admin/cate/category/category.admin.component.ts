@@ -33,18 +33,23 @@ export class CategoryAdminComponent implements OnInit {
 
   // Tải danh sách danh mục
   loadCategories(page: number, limit: number): void {
-    this.isLoading = true; // Bắt đầu tải dữ liệu
-    this.categoryService.getCategories(page, limit).subscribe({
-      next: (data: Category[]) => {
-        this.categories = data;
-        this.isLoading = false; // Hoàn tất tải dữ liệu
-      },
-      error: (err: { message: any }) => {
-        this.error = `Error: ${err.message}`; // Xử lý lỗi
-        this.isLoading = false; // Hoàn tất tải dữ liệu
-      },
-    });
-  }
+  this.isLoading = true; // Bắt đầu tải dữ liệu
+  this.categoryService.getCategories(page, limit).subscribe({
+    next: (response: any) => {
+      console.log('Categories loaded:', response); // Log phản hồi
+      this.categories = response.data; // Chỉ lấy mảng `data`
+      this.isLoading = false; // Hoàn tất tải dữ liệu
+    },
+    error: (err: { message: any }) => {
+      console.error('Error loading categories:', err); // Log lỗi
+      this.error = `Error: ${err.message}`; // Lưu lỗi
+      this.isLoading = false; // Hoàn tất tải dữ liệu
+    },
+  });
+}
+
+
+  
 
   // Mở modal thêm danh mục
   openAddModal(): void {

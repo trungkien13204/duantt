@@ -25,6 +25,7 @@ export class AddProductAdminComponent implements OnInit {
     keyword: '',
     author: '',
     url: '',
+    quantity:'',
     product_images: []
   };
   showForm: boolean = true;
@@ -46,14 +47,17 @@ export class AddProductAdminComponent implements OnInit {
 
   getCategories() {
     this.categoryService.getCategories(1, 100).subscribe({
-      next: (categories: Category[]) => {
-        this.categories = categories;
+      next: (response: any) => {
+        // Nếu API trả về { data: [...] }
+        this.categories = response.data || []; 
       },
       error: (error: any) => {
         console.error('Error fetching categories:', error);
+        this.categories = []; // Gán giá trị mặc định nếu lỗi xảy ra
       }
     });
   }
+  
 
   onFilesSelected(event: Event) {
     const fileInput = event.target as HTMLInputElement;
@@ -105,6 +109,7 @@ export class AddProductAdminComponent implements OnInit {
       keyword: '',
       author: '',
       url: '',
+      quantity:'',
       product_images: []
     };
     this.selectedFiles = [];

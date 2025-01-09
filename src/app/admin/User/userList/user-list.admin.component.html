@@ -19,6 +19,7 @@
           <th>Số điện thoại</th>
           <th>Vai trò</th>
           <th>Ngày sinh</th>
+          <th>Trạng thái</th>
         </tr>
       </thead>
       <tbody>
@@ -29,6 +30,12 @@
           <td>{{ user.phoneNumber }}</td>
           <td>{{ user.role.name }}</td>
           <td>{{ user.dateOfBirth | date: 'yyyy-MM-dd' }}</td>
+          <td>
+            <span [ngClass]="user.active ? 'active-dot' : 'inactive-dot'"></span>
+            {{ user.active ? 'Đang hoạt động' : 'Ngừng hoạt động' }}
+          </td>
+          
+
         </tr>
       </tbody>
     </table>

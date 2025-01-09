@@ -8,7 +8,8 @@ export interface Product {
     description: string;
     category_id: number;
     keyword:string;
-    author:string
+    author:string;
+    quantity:string;
     url: string;  // Thêm thuộc tính url (tùy chọn)
     product_images: any[];
   
