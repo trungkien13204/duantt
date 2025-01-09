@@ -1,0 +1,34 @@
+/* Container cho tất cả các biểu đồ */
+.statistics-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+  }
+  
+  /* Mỗi biểu đồ sẽ có container riêng */
+  .chart-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Tiêu đề của biểu đồ */
+  .chart-container h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  /* Đảm bảo các canvas có kích thước hợp lý */
+  canvas {
+    width: 100% !important;
+    height: 400px !important;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
